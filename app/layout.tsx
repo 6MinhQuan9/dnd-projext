@@ -6,15 +6,11 @@ import {
 } from "@clerk/nextjs";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
-import { Docs, Github, Times } from "./icons";
-import { Twitter } from "./icons";
-import { Discord } from "./icons";
 import { Metadata } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import DesignerContextProvider from "@/components/context/Designercontext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,16 +30,18 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider>
         <body className={`${inter.className} min-h-screen flex flex-col`}>
-          <ThemeProvider 
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
+          <DesignerContextProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
 
-            <Toaster />
-          </ThemeProvider>
+              <Toaster />
+            </ThemeProvider>
+          </DesignerContextProvider>
         </body>
       </ClerkProvider>
 
