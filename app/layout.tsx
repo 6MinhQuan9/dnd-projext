@@ -11,6 +11,7 @@ import { Metadata } from "next";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import DesignerContextProvider from "@/components/context/Designercontext";
+import NextTopLoader from 'nextjs-toploader'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider>
         <body className={`${inter.className} min-h-screen flex flex-col`}>
+          <NextTopLoader />
           <DesignerContextProvider>
             <ThemeProvider
               attribute="class"
