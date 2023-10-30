@@ -106,7 +106,7 @@ function StatsCards(props: StatsCardsProps) {
   );
 }
 
-function StatsCard(props: StatsCardProps) {
+export function StatsCard(props: StatsCardProps) {
   const { title, icon, helperText, value, loading, className } = props;
   return (
     <Card className={className}>
