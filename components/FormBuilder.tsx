@@ -18,7 +18,7 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs"
 import Confetti from "react-confetti"
 
 function FormBuilder({ form }: { form: Form }) {
-   const { setElements } = useDesigner()
+   const { setElements, setSelectedElement } = useDesigner()
    const [isReady, setIsReady] = useState<boolean>(false)
    const mouseSensor = useSensor(MouseSensor, {
       activationConstraint: {
@@ -40,6 +40,7 @@ function FormBuilder({ form }: { form: Form }) {
       if(isReady) return;
       const elements = JSON.parse(form.content)
       setElements(elements)
+      setSelectedElement(null)
       const readyTimeout = setTimeout(() => {
          setIsReady(true), 500
       })
@@ -47,7 +48,7 @@ function FormBuilder({ form }: { form: Form }) {
       return () => {
          clearTimeout(readyTimeout)
       }
-   }, [form, isReady, setElements])
+   }, [form, isReady, setElements, setSelectedElement])
    
    if(!isReady) {
       return (<div className="flex flex-col items-center justify-center w-full h-full">
